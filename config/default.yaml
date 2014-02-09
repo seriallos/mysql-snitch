@@ -1,0 +1,6 @@
+FAIL_FAST: false
+
+hipchat:
+  from: "Snitch"
+  color: "red"
+  notify: true

@@ -1,0 +1,23 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+
+node_modules/
+
+# dave's vim undo filess
+.*un~
+
+# Ignore potentially sensitive config files
+config/production.yaml
+config/runtime.json

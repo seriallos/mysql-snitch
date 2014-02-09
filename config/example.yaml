@@ -1,0 +1,81 @@
+# true: uncaught exceptions will exit the process
+# false: uncaught exceptions will be reported but processing will continue
+#
+# Recommend true when developing new functionality.
+FAIL_FAST: false
+
+# Configurations for email notifications
+#
+# If "to" is empty, email will not be sent
+email:
+  # server block is handed directly to the emailjs server creation
+  #
+  # From emailjs README:
+  #
+  # // options is an object with the following keys
+  #     user        // username for logging into smtp 
+  #     password    // password for logging into smtp
+  #     host        // smtp host
+  #     port        // smtp port (if null a standard port number will be used)
+  #     ssl         // boolean or object {key, ca, cert} (if exists, ssl connection will be made)
+  #     tls         // boolean (if true, starttls will be initiated)
+  #     timeout     // max number of milliseconds to wait for smtp responses (defaults to 5000)
+  #     domain      // domain to greet smtp with (defaults to os.hostname)
+  #
+  # Full docs at https://github.com/eleith/emailjs
+  server:
+    host: "mail.example.com"
+  from: MySQL Snitch <no-reply@example.com>
+  # If 'to' is not defined or empty, no emails will be sent
+  to:
+    - Operations Team <ops@example.com>
+  # BCC is optional and can be used to send alerts to services like PagerDuty
+  bcc:
+    - snitch@example.pagerduty.com
+
+# Configuration for HipChat notification
+#
+# Leave 'token' empty to disable HipChat notification
+hipchat:
+  # API Token
+  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  # Room to notify
+  room: "Operations"
+
+# List of databases and checks
+databases:
+  # Nickname for the database - this is used to help identify what changed when
+  # a notification is sent
+  DATABASE_CHECK_NICKNAME:
+    # connection information
+    # Handed off directly to MySQL connector
+    # More docs at https://github.com/felixge/node-mysql
+    conn:
+      host: "database.example.com"
+      user: "database_user"
+      password: "database_password"
+      database: "database_name"
+    # List of queries to run on a schedule
+    checks:
+      admins:
+        # Run every 5 minutes
+        # Cron syntax comes from https://github.com/ncb000gt/node-cron
+        # Basic UNIX syntax with the first additional column indicating seconds
+        cron:  "0 */5 * * * *"
+        query: "SELECT * FROM admin_users"
+      configuration:
+        # Run every 30 seconds
+        cron:  "*/30 * * * * *"
+        query: "SELECT * FROM configuration"
+  # Multiple database connections are allowed
+  DATABASE_CHECK_NICKNAME_TWO:
+    conn:
+      host: "database.example.com"
+      user: "database_user"
+      password: "database_password"
+      database: "database_name"
+    checks:
+      configuration:
+        # Run every 30 seconds
+        cron:  "*/30 * * * * *"
+        query: "SELECT * FROM configuration"
