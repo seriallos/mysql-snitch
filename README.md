@@ -13,7 +13,7 @@ Snitch might be able to help.
 Quick Start
 ===========
 
-    $ git clone
+    $ git clone git@github.com:seriallos/mysql-snitch.git
     $ cd mysql-snitch
     $ npm install
 
