@@ -2,9 +2,13 @@ mysql-snitch
 ============
 
 mysql-snitch is a tool to watch tables/queries for any changes and tattle if
-they do with details of the records that changed.  Basically, a very, very
-simple MySQL Intrusion Detection System that's easy to apply to either your own
-or a third party application using a MySQL backend.
+they do with details of the records that changed.
+
+Have a 3rd party application that doesn't audit changes to admin users?  Want to
+know if a malicious user is able to twiddle bits they shouldn't be able to?
+Just want to make sure marketing doesn't add everyone as an admin?
+
+Snitch might be able to help.
 
 Quick Start
 ===========
